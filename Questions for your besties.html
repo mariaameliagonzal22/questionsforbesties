@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Questions for your besties</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+:root{--bg:#fdf6f0;--surface:#fff;--text:#2b2230;--muted:#7a6f80;--accent:#e0507a;--accent2:#f59e6c;--border:#eadfe4;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17121c;--surface:#241c2c;--text:#f3eaf5;--muted:#a498ad;--accent:#f0698f;--accent2:#f5a173;--border:#3a2f45;color-scheme:dark}}
+html,body{min-height:100%}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;overscroll-behavior:none}
+.surface{background:var(--surface);border:1px solid var(--border)}
+.muted{color:var(--muted)}
+.btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:600}
+.ghost{border:1px solid var(--border);color:var(--text)}
+input[type=text],textarea{background:var(--bg);border:1px solid var(--border);color:var(--text)}
+input:focus,textarea:focus{outline:2px solid var(--accent)}
+.card{position:absolute;inset:0;border-radius:1.5rem;touch-action:none;user-select:none;transition:transform .3s ease}
+.card.front{background:var(--surface);border:1px solid var(--border);box-shadow:0 12px 30px rgba(0,0,0,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;cursor:grab}
+.card.back{background:repeating-linear-gradient(45deg,var(--accent),var(--accent) 10px,var(--accent2) 10px,var(--accent2) 20px);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.card.dragging{transition:none;cursor:grabbing}
+@keyframes flip{from{transform:rotateY(90deg)}to{transform:rotateY(0)}}
+.flip{animation:flip .35s ease}
+:root{--bg:#fbe3ea;--surface:#fffaf0;--text:#1d1a1f;--muted:#6b5f6e;--border:#1d1a1f;--edge:#1d1a1f}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#241c33;--surface:#2f2640;--text:#fff6e8;--muted:#bdb1c9;--border:#fff6e8;--edge:#fff6e8}}
+body{background-color:var(--bg);background-image:radial-gradient(circle at 20% 15%,#ffd6e055 0 90px,transparent 91px),radial-gradient(circle at 85% 80%,#c9e4ff55 0 120px,transparent 121px),radial-gradient(circle at 90% 10%,#fff1a855 0 70px,transparent 71px);background-attachment:fixed}
+h1{font-family:Georgia,'Times New Roman',serif;font-weight:800;letter-spacing:-.02em}
+.surface{background:var(--surface);border:2px solid var(--border);box-shadow:4px 4px 0 var(--border)}
+.btn{background:#ffc8d8;color:#1d1a1f;border:2px solid var(--edge);box-shadow:3px 3px 0 var(--edge);font-weight:700}
+.ghost{background:#fff1a8;color:#1d1a1f;border:2px solid var(--edge);box-shadow:3px 3px 0 var(--edge);font-weight:700}
+.btn:active,.ghost:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--edge)}
+input[type=text],textarea{background:#fffaf0;color:#1d1a1f;border:2px solid #1d1a1f}
+input:focus,textarea:focus{outline:3px solid #b9a7ff}
+.surface label,.surface h2{color:var(--text)}
+.card.front{background:#fffaf0;color:#1d1a1f;border:3px solid var(--edge);box-shadow:6px 6px 0 var(--edge);padding:0;align-items:stretch;justify-content:flex-start;overflow:hidden;font-family:Georgia,'Times New Roman',serif}
+.card.back{background:radial-gradient(circle at 50% 50%,#ffffff55 0 38%,transparent 39%),var(--c,#ffc8d8);border:3px solid var(--edge);box-shadow:6px 6px 0 var(--edge);display:flex;align-items:center;justify-content:center;color:#1d1a1f}
+.stripe{background:var(--c);border-bottom:3px solid #1d1a1f;padding:.6rem 1rem;display:flex;justify-content:space-between;font:700 .7rem system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#1d1a1f}
+.qbody{flex:1;display:flex;align-items:center;justify-content:center;padding:1.5rem 1.75rem}
+.qfoot{border-top:3px solid #1d1a1f;padding:.5rem;text-align:center;font:700 .65rem system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1d1a1f}
+.badge{border:3px solid #1d1a1f;border-radius:999px;padding:.4rem 1rem;background:#fffaf0;font:800 1rem Georgia,serif;font-style:italic}
+body,h1,.card.front,.stripe,.qfoot,.badge,.btn,.ghost,input,textarea,.script{font-family:'Montserrat','Proxima Nova','Segoe UI',system-ui,sans-serif}
+h1{font-weight:700;letter-spacing:0;line-height:1.1}
+.hl{background:linear-gradient(transparent 58%,rgba(255,200,216,.75) 58%);padding:0 .15em;border-radius:.3em}
+.script{font-family:'Caveat','Segoe Print','Comic Sans MS',cursive;font-weight:600;font-size:1.45rem;color:var(--muted)}
+.card.front{border-radius:2rem;font-weight:600}
+.card.back{border-radius:2rem}
+.stripe{font-weight:600}
+.badge{font-style:normal;font-weight:600;letter-spacing:.02em}
+.btn,.ghost{border-radius:999px!important}
+@keyframes bob{50%{transform:translateY(-7px) rotate(10deg)}}
+.deco{position:absolute;pointer-events:none;animation:bob 4s ease-in-out infinite;font-size:1.4rem}
+@media (prefers-reduced-motion:reduce){.deco{animation:none}.flip{animation:none}}
+.qfoot{font-family:'Caveat','Segoe Print','Comic Sans MS',cursive;font-weight:600;font-size:1.2rem;letter-spacing:.02em;text-transform:none;padding:.2rem}
+</style>
+</head>
+<body>
+<div class="max-w-md mx-auto px-4 py-6">
+  <header class="text-center mb-5 relative">
+    <span class="deco" style="left:4px;top:-4px">✿</span><span class="deco" style="right:6px;top:2px;animation-delay:-1.3s">★</span><span class="deco" style="left:18px;bottom:2px;animation-delay:-2.2s">♡</span><span class="deco" style="right:22px;bottom:-6px;animation-delay:-3s">✧</span>
+    <h1 class="text-3xl px-6">Questions for your <span class="hl">besties</span></h1>
+    <p class="script mt-2">pick a card, spill the tea, giggle a lot ♡</p>
+  </header>
+
+  <nav class="grid grid-cols-2 gap-2 mb-5">
+    <button id="tabPlay" class="rounded-xl py-2 font-semibold">Play</button>
+    <button id="tabEdit" class="rounded-xl py-2 font-semibold">Questions</button>
+  </nav>
+
+  <section id="play">
+    <div class="flex justify-between text-sm muted mb-3"><span id="remaining"></span><span id="used"></span></div>
+    <div id="stack" class="relative w-full" style="height:20rem;perspective:1000px"></div>
+    <p id="hint" class="text-center text-sm muted mt-5">Swipe the card left or right (or use the arrow keys)</p>
+    <div class="grid grid-cols-2 gap-3 mt-4">
+      <button id="nextBtn" class="btn rounded-xl py-3">Next card</button>
+      <button id="restartBtn" class="ghost rounded-xl py-3 font-semibold">Restart game</button>
+    </div>
+  </section>
+
+  <section id="edit" class="hidden">
+    <form id="addForm" class="surface rounded-2xl p-4 mb-4">
+      <label for="newQ" class="block text-sm font-semibold mb-2">Add a question</label>
+      <textarea id="newQ" rows="2" maxlength="200" class="w-full rounded-xl p-3" placeholder="What’s a small thing that made you smile this week?"></textarea>
+      <button type="submit" class="btn rounded-xl py-2 px-5 mt-3 w-full">Add to deck</button>
+    </form>
+    <div class="flex justify-between items-center mb-2">
+      <h2 class="font-semibold"><span id="count"></span> questions</h2>
+      <button id="resetDefaults" class="text-xs muted underline">Load starter set</button>
+    </div>
+    <ul id="list" class="space-y-2"></ul>
+  </section>
+</div>
+
+<script>
+const DEFAULTS=[
+"What’s a compliment you’ve gotten that you still think about?","What’s a story about your parents from before you existed that you love?","What’s the most unhinged thing in your search history right now?","What’s something you believed strongly five years ago that you’ve quietly let go of?","What did you think of me the first time we met?","Which relative are you most like, and does that scare you?","Do you think people change, or just become more themselves?","What’s a small thing you’re irrationally competitive about?","What’s a version of your life you almost lived?","What food would you eat for a year for $10,000?","What’s a family tradition you didn’t realize was strange until you were an adult?","If I had to describe your personality using three items in your purse, what would you want me to pick?","If you could know the honest answer to one question about your own future, what would you ask?","What’s something you’ve never told me because it never came up?","Is there anyone in your family tree you wish you could interview for an hour?","What’s something you’re proud of that nobody claps for?","What do you think you’ll care about at 80 that you don’t care about now?","Is there a decision you made that you’d defend to anyone but still wonder about?","When have I been wrong about you?","Is it better to be understood or to be free?","What’s something you think is true but can’t prove?","What do you think I underestimate about myself?","What’s something hard I need to hear sometimes?","What’s one of your favorite outfits I’ve worn?","What have you grown to love about yourself?","What’s the best thing you’ve done for yourself recently?","What would your younger self be relieved about?","What’s one thing you did right?","Who allows you to be you?","Would you rather you accidentally say your ex’s name in bed or your partner accidentally say their ex’s name in bed?","Would you rather have great friends but no partner or a great partner but no friends?","Would you rather look like all your partner’s exes or be an exception to their typical type?","Would you rather always know what others think of you or have others always know what you think of them?","Would you rather date someone who always needs space or someone who constantly craves attention?","Would you rather have a partner who is never able to make you laugh or never able to make you orgasm?","What parts of yourself do you see in me?","What parts of your life work? What parts of your life hurt?","What’s something you wouldn’t want to change about yourself?","Do you think the image you have of yourself matches the image people see you as?","What are you still trying to prove to yourself?","What’s the most unexplainable thing that’s ever happened to you?","What would your younger self not believe about you today?","What has been your earliest recollection of happiness?","What question are you trying to answer most in your life?","What lesson took you the longest to unlearn?","Do you believe in right person, wrong time? Explain.","Wildcard. Admit something.","What’s been the best part of your week?","What’s something you’re looking forward to?","What’s an obsession you could talk about for hours?","What’s your favorite way to spend a Sunday?","What’s something you’ve changed your mind recently about?","What’s the best advice you’ve ever been given?","What’s something you’re surprisingly good at?","What’s been bringing you joy lately?","When do you feel most like yourself?","What’s a lesson you had to learn the hard way?","What’s something you’ve outgrown?","What’s a belief you no longer hold?","What’s a small moment that changed your life?","What’s something you’re trying to get better at?","What’s a risk you’re glad you took?","What do you want more of in your life?","What does a really good day look like to you?","What would your TED Talk be about?","What’s your most irrational hill to die on?","What fictional world would you happily move to?","If you could have dinner with any three fictional characters, who are you inviting?","What’s your favorite smell?","What’s something that makes you feel like you’re in a movie?","If one animal could talk, which would you pick?","What childhood obsession do you secretly still love?","What’s a totally impractical luxury you’d love to have?","What’s taking up most of your brain this week?","How’d you end up doing what you do?","What’s your go-to lunch spot around here?","Fun weekend or recovery weekend?","What’s been weighing on you lately?","Give me your highs and lows since I saw you.","What are you excited about right now?","Any exciting upcoming travels?","What’s something most people don’t know about you?","Is there something you’ve done recently that you really want to do again? Or never want to do again?","What’s the last thing that surprised you?","What’s the last headline you read that made you stop?","What’s something you’ve been really into lately?","What do you love most about living here?","What’s your coffee order? I need to know.","What does your ideal Saturday look like?","How do you like to recharge after a busy week?","What’s a show or book you can’t stop recommending?","What’s a hidden gem in town more people should know about?","What’s a guilty pleasure you’ll defend forever?","Dinner out or movie in? What’s your ideal hangout?","Adventure trip or beach and book trip?","Where did you grow up and what was that like?","What’s a childhood memory that still makes you laugh?","Tell me about your family.","What’s a season of life that changed you?","What’s something you’ve done that you’re really proud of?","What’s something you’re still figuring out?","What’s something you’re working on in yourself right now?","What does a good friend look like to you?","What’s a dream you don’t say out loud very often?","What are you most grateful for right now?","How can I support you this season?","What’s one thing you want us to do together this year?","What’s a goal I can cheer you on with this year?","What’s working for you in this friendship right now?","How do you feel about our level of contact recently?","Have there been any moments recently between us that you’d like to revisit?","How do you feel that you’ve changed recently and how can I support you in that?","Is there anything happening in your life that I can show up better for?","How can we keep each other on track for our goals?"
+];
+const _OLD=[
+"What’s a moment from this year you’d relive in a heartbeat?",
+"What’s something you’re secretly proud of?",
+"If we could teleport anywhere right now, where would you pick?",
+"What’s a small habit of mine that you find endearing?",
+"What was your most embarrassing moment growing up?",
+"What’s a dream you haven’t told many people about?",
+"Which song instantly takes you back to a memory?",
+"What’s the best piece of advice anyone has given you?",
+"What do you need more of in your life right now?",
+"What’s one thing you’d like us to try together?",
+"When do you feel most like yourself?",
+"What’s a fear you’d love to get over?"
+];
+const KEY="besties-questions-v2";
+const uid=()=>Math.random().toString(36).slice(2,10);
+const mk=t=>({id:uid(),text:t});
+let questions=[],deck=[],used=0,drag=null,lastTop=null;
+const PAL=["#ffc8d8","#fff1a8","#c9f2dc","#d9ccff","#ffd9b8","#c4e3ff"];
+const pick=(s,o=0)=>PAL[([...s].reduce((a,ch)=>a+ch.charCodeAt(0),0)+o)%PAL.length];
+
+function load(){try{const s=localStorage.getItem(KEY);if(s){const a=JSON.parse(s);if(Array.isArray(a)&&a.length)return a}}catch(e){}return DEFAULTS.map(mk)}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(questions))}catch(e){}}
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const byId=id=>questions.find(q=>q.id===id);
+const $=id=>document.getElementById(id);
+
+function startGame(){deck=shuffle(questions.map(q=>q.id));used=0;lastTop=null;renderDeck()}
+
+function renderDeck(){
+  deck=deck.filter(byId);
+  const stack=$("stack");stack.innerHTML="";
+  $("remaining").textContent=deck.length+" left in deck";
+  $("used").textContent=used+" played";
+  $("nextBtn").disabled=!deck.length;$("nextBtn").style.opacity=deck.length?1:.5;
+  if(!deck.length){
+    stack.innerHTML='<div class="surface rounded-3xl h-full flex flex-col items-center justify-center text-center p-8"><div class="text-5xl mb-3">🌸</div><h2 class="text-xl font-bold mb-2">That’s every card, besties!</h2><p class="muted text-sm">Every question has been played. Restart to shuffle them all back in, or add new ones.</p></div>';
+    $("hint").classList.add("hidden");return;
+  }
+  $("hint").classList.remove("hidden");
+  const n=Math.min(3,deck.length);
+  for(let i=n-1;i>=0;i--){
+    const c=document.createElement("div");
+    if(i===0){
+      c.className="card front"+(lastTop!==deck[0]?" flip":"");
+      lastTop=deck[0];
+      c.style.setProperty("--c",pick(deck[0]));
+      c.innerHTML='<div class="stripe"><span>✿ Question</span><span></span></div><div class="qbody"><p class="text-xl font-semibold leading-snug text-center"></p></div><div class="qfoot">made with love ♡</div>';
+      c.querySelector(".stripe span:last-child").textContent="No. "+(used+1);
+      c.querySelector("p").textContent=byId(deck[0]).text;
+      attach(c);
+    }else{
+      c.className="card back";
+      c.style.setProperty("--c",pick(deck[i],i));
+      c.innerHTML='<span class="badge">besties ♡</span>';
+      c.style.transform=`translateY(${i*10}px) scale(${1-i*.04})`;
+    }
+    stack.appendChild(c);
+  }
+}
+
+function attach(c){
+  c.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY,dx:0};c.classList.add("dragging");c.setPointerCapture(e.pointerId)});
+  c.addEventListener("pointermove",e=>{
+    if(!drag)return;drag.dx=e.clientX-drag.x;const dy=(e.clientY-drag.y)*.3;
+    c.style.transform=`translate(${drag.dx}px,${dy}px) rotate(${drag.dx/20}deg)`;
+  });
+  const end=()=>{
+    if(!drag)return;const dx=drag.dx;drag=null;c.classList.remove("dragging");
+    if(Math.abs(dx)>90)fling(c,dx>0?1:-1);else c.style.transform="";
+  };
+  c.addEventListener("pointerup",end);c.addEventListener("pointercancel",end);
+}
+
+let busy=false;
+function fling(c,dir){
+  if(busy||!deck.length)return;busy=true;
+  c=c||document.querySelector(".card.front");
+  c.classList.remove("flip");
+  c.style.transform=`translate(${dir*500}px,-40px) rotate(${dir*25}deg)`;c.style.opacity=0;
+  setTimeout(()=>{deck.shift();used++;busy=false;renderDeck()},280);
+}
+
+/* Question manager */
+function renderList(){
+  $("count").textContent=questions.length;
+  const ul=$("list");ul.innerHTML="";
+  questions.forEach(q=>{
+    const li=document.createElement("li");
+    li.className="surface rounded-xl p-2 flex items-center gap-2";
+    const inp=document.createElement("input");
+    inp.type="text";inp.value=q.text;inp.maxLength=200;inp.setAttribute("aria-label","Edit question");
+    inp.className="flex-1 rounded-lg px-3 py-2 text-sm min-w-0";
+    inp.addEventListener("change",()=>{
+      const t=inp.value.trim();
+      if(!t){inp.value=q.text;return}
+      q.text=t;save();renderDeck();
+    });
+    const del=document.createElement("button");
+    del.textContent="✕";del.title="Delete";del.setAttribute("aria-label","Delete question");
+    del.className="ghost rounded-lg w-9 h-9 shrink-0";
+    del.addEventListener("click",()=>{
+      questions=questions.filter(x=>x.id!==q.id);deck=deck.filter(id=>id!==q.id);
+      save();renderList();renderDeck();
+    });
+    li.append(inp,del);ul.appendChild(li);
+  });
+}
+
+$("addForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const t=$("newQ").value.trim();if(!t)return;
+  const q=mk(t);questions.push(q);save();
+  // slot into the remaining deck at a random position (never replacing the card on top)
+  const pos=deck.length?1+Math.floor(Math.random()*deck.length):0;
+  deck.splice(pos,0,q.id);
+  $("newQ").value="";renderList();renderDeck();
+});
+$("resetDefaults").addEventListener("click",()=>{
+  if(confirm("Replace all your questions with the starter set?")){questions=DEFAULTS.map(mk);save();renderList();startGame()}
+});
+$("restartBtn").addEventListener("click",startGame);
+$("nextBtn").addEventListener("click",()=>fling(null,1));
+document.addEventListener("keydown",e=>{
+  if(e.target.matches("input,textarea"))return;
+  if(e.key==="ArrowRight")fling(null,1);if(e.key==="ArrowLeft")fling(null,-1);
+});
+
+function tab(t){
+  const play=t==="play";
+  $("play").classList.toggle("hidden",!play);$("edit").classList.toggle("hidden",play);
+  [["tabPlay",play],["tabEdit",!play]].forEach(([id,on])=>{
+    const b=$(id);b.className="rounded-xl py-2 font-semibold "+(on?"btn":"ghost");
+  });
+}
+$("tabPlay").onclick=()=>tab("play");$("tabEdit").onclick=()=>tab("edit");
+
+questions=load();renderList();startGame();tab("play");
+</script>
+</body>
+</html>
